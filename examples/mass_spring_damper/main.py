@@ -9,6 +9,8 @@ Affiliation: Oxford Robotics Institute
 """
 
 
+# ToDO: Create a separate file for the parameters
+
 # Standard import Lib
 import numpy as np
 import matplotlib.pyplot as plt
@@ -116,12 +118,12 @@ for i in range(len(x) - 1):
     eps_obs_p = obs_p[i] - aic.par_g_mu(mu[i])*mu_p[i]
 
 
-    F[i] = 0.5*(-np.log(sigma_mu0_inv[i]*sigma_mu1_inv[i]*sigma_obs0_inv[i]*sigma_obs1_inv[i])
-                     + np.float_power(eps_mu, 2)*sigma_mu0_inv[i]
-                     + np.float_power(eps_mu_p, 2)*sigma_mu1_inv[i]
-                     + np.float_power(eps_obs, 2)*sigma_obs0_inv[i]
-                     + np.float_power(eps_obs_p, 2)*sigma_obs1_inv[i]
-                     )
+#    F[i] = 0.5*(-np.log(sigma_mu0_inv[i]*sigma_mu1_inv[i]*sigma_obs0_inv[i]*sigma_obs1_inv[i])
+#                     + np.float_power(eps_mu, 2)*sigma_mu0_inv[i]
+#                     + np.float_power(eps_mu_p, 2)*sigma_mu1_inv[i]
+#                     + np.float_power(eps_obs, 2)*sigma_obs0_inv[i]
+#                     + np.float_power(eps_obs_p, 2)*sigma_obs1_inv[i]
+#                     )
 
     par_f = aic.par_f_mu(x_target, mu[i], tau_inv)
     par_par_f = aic.par_par_f_mu(x_target, mu[i], tau_inv)
@@ -195,36 +197,15 @@ for i in range(len(x) - 1):
     tau_inv_vec[i+1] = max(0.5, tau_inv_vec[i] - k_tau_inv*df_dtau_inv*dt)
     tau_inv = tau_inv_vec[i+1]
 
-    F_after[i+1] = 0.5*(-np.log(sigma_mu0_inv[i+1]*sigma_mu1_inv[i+1]*sigma_obs0_inv[i+1]*sigma_obs1_inv[i+1])
-                     + np.float_power(eps_mu, 2)*sigma_mu0_inv[i+1]
-                     + np.float_power(eps_mu_p, 2)*sigma_mu1_inv[i+1]
-                     + np.float_power(eps_obs, 2)*sigma_obs0_inv[i+1]
-                     + np.float_power(eps_obs_p, 2)*sigma_obs1_inv[i+1]
-                     )
-
-    if (F_after[i+1] > F[i]):
-        sigma_obs0_inv[i+1] = sigma_obs0_inv[i]
-        sigma_obs1_inv[i+1] = sigma_obs1_inv[i]
-        sigma_mu0_inv[i+1] = sigma_mu0_inv[i]
-        sigma_mu1_inv[i+1] = sigma_mu1_inv[i]
-
-
-   # if(i*dt) == 0:
-   #     precision_update_allowed = False
-   #
-   # if(i*dt) == 4:
-   #     precision_update_allowed = False
-   #
-   # if(i*dt) == 9:
-   #     precision_update_allowed = False
+#    F_after[i+1] = 0.5*(-np.log(sigma_mu0_inv[i+1]*sigma_mu1_inv[i+1]*sigma_obs0_inv[i+1]*sigma_obs1_inv[i+1])
+#                     + np.float_power(eps_mu, 2)*sigma_mu0_inv[i+1]
+#                     + np.float_power(eps_mu_p, 2)*sigma_mu1_inv[i+1]
+#                     + np.float_power(eps_obs, 2)*sigma_obs0_inv[i+1]
+#                     + np.float_power(eps_obs_p, 2)*sigma_obs1_inv[i+1]
+#                     )
 
 
 
-#
-#    if (i*dt) == 10:
-#        x_target = 0.5
-#    if (i*dt) == 15:
-#        x_target = 1.2
 
     # Simulaiton of real dynamics
     x_pp= hlp.sim_dynamics(a[i], x[i], x_p[i])
