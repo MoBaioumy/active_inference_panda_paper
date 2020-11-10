@@ -37,6 +37,7 @@ def rk4_int(prior, time_step, derivative):
     return f_t
 
 def add_normal_noise(state, variance):
-    # TODO: adjust for vectors
+    # Add gaussian noise to scalars 
+    #TODO: adjust for vectors
     
     return(state + np.random.normal(0, variance, 1))
