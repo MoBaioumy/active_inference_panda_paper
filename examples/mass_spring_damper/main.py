@@ -24,7 +24,7 @@ import seaborn as sns
 palette = sns.color_palette()
 
 # =============================================================================
-# Setting for changing high-level behaviour
+# Settings for changing high-level behaviour
 # =============================================================================
 
 MODE = 2
