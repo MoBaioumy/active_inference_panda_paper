@@ -1,7 +1,6 @@
 # Active inference panda paper
-Repository accompanying the paper 'Active Inference for Integrated State-Estimation, Control and Learning'. 
-
-
+Repository accompanying the paper 'Active Inference for Integrated State-Estimation, Control and Learning'.
+Paper: https://arxiv.org/abs/2005.05894
 
 ### Quick access 
 
